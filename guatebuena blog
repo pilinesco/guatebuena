@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>guatebuena blog</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 3000px; /* Aumenta el tamaño vertical del contenedor para permitir desplazamiento */
+        }
+
+        .image-container {
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-container {
+            position: absolute;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            z-index: 2;
+            text-shadow: 2px 2px 5px black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="collage"></div>
+
+    <script>
+        const images = [
+           "imagenes/blue kaioken.jpg",
+            "imagenes/homelander.gif",
+            "imagenes/morenazi.jpg",
+            "imagenes/frasco.gif",
+            "imagenes/daniela.jpg",
+            "imagenes/among.gif",
+            "imagenes/dante.jpg",
+            "imagenes/vergil.jpg",
+            "imagenes/level slider.jpg",
+            "imagenes/cacahuates.jpg",
+             "imagenes/felipe.jpg",
+             "imagenes/makima.jpg",
+             "imagenes/bob.jpg",
+             "imagenes/cerrajero.jpg",
+             "imagenes/gato.jpg",
+            "imagenes/gogeta4.gif",
+"imagenes/pov.jpg",
+"imagenes/furrotriste.jpg",
+"imagenes/mujer.jpg",
+"imagenes/tripa.jpg",
+"imagenes/gatopendejo.jpg",
+"imagenes/akira.jpg",
+"imagenes/y eso chamo.gif",  
+"imagenes/drman.jpg",
+"imagenes/super polla.gif",
+"imagenes/dafoe.gif",
+"imagenes/w.gif",
+"imagenes/2_hours.gif",
+"imagenes/travis.jpg",
+"imagenes/mi father.jpg",
+"imagenes/0dias.jpg",
+"imagenes/pervert.gif",
+"imagenes/obomba.jpg",
+"imagenes/chanchurus.jpg",
+"imagenes/camion.jpg",
+"imagenes/oye.jpg",
+"imagenes/nombre.jpg",
+"imagenes/fire.jpg",
+"imagenes/termo.jpg",
+"imagenes/que.jpg",
+"imagenes/gun.jpg",
+
+
+        ];
+
+        const messages = [
+       "Nebur015",
+            "thiagay",
+            "sombra el que lo lea",
+            "fuck niggers",
+            "level slider",
+            "saludos a nebot",
+            "revivan cagandome en la puta madre de thiago",
+            "cf",
+            "https://www.youtube.com/watch?v=zJlaFBv5IqM&t=137s&pp=ygUOZ29rdSB2cyB2ZWdldGE%3D",
+            "KYS",
+            "mierdin",
+            "codigo kbzuko en la tienda de fornite",
+"edit gracias por los laiks",
+"mi madre: tetas mi padre: sexo gay",
+"tetas o culos",
+"racismo>>>>>clasismo",
+"jwulen lo chupa",
+
+
+        ];
+
+        const collageContainer = document.getElementById('collage');
+
+        function getRandomPosition() {
+            const x = Math.floor(Math.random() * window.innerWidth);
+            const y = Math.floor(Math.random() * 3000); // Cambiado para adaptarse a la altura del contenedor
+            return { x, y };
+        }
+
+        function getRandomSize() {
+            const size = Math.floor(Math.random() * 300) + 100; // Genera tamaños entre 100px y 400px
+            return size;
+        }
+
+        function createImageElement(src) {
+            const imgContainer = document.createElement('div');
+            imgContainer.classList.add('image-container');
+
+            const img = document.createElement('img');
+            img.src = src;
+
+            const size = getRandomSize();
+            imgContainer.style.width = `${size}px`;
+            imgContainer.style.height = `${size}px`;
+
+            imgContainer.style.left = `${getRandomPosition().x}px`;
+            imgContainer.style.top = `${getRandomPosition().y}px`;
+            imgContainer.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            imgContainer.appendChild(img);
+            return imgContainer;
+        }
+
+        function createTextElement(text) {
+            const textContainer = document.createElement('div');
+            textContainer.classList.add('text-container');
+
+            textContainer.style.left = `${getRandomPosition().x}px`;
+            textContainer.style.top = `${getRandomPosition().y}px`;
+            textContainer.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            textContainer.textContent = text;
+            return textContainer;
+        }
+
+
+        function populateCollage() {
+            collageContainer.innerHTML = ''; // Limpia el collage actual
+
+            images.forEach(src => {
+                const imgElement = createImageElement(src);
+                collageContainer.appendChild(imgElement);
+            });
+
+            messages.forEach(msg => {
+                const textElement = createTextElement(msg);
+                collageContainer.appendChild(textElement);
+            });
+        }
+
+        window.onload = populateCollage;
+        window.onresize = populateCollage; // Repoblar el collage al cambiar el tamaño de la ventana
+
+        // Recarga automática cada 5 segundos para cambiar el collage
+        setInterval(populateCollage, 5000);
+    </script>
+</body>
+</html>
